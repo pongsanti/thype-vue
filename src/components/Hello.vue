@@ -26,6 +26,7 @@
             <article class="tile is-child notification is-danger">
               <p class="title">Stat</p>
               <p class="subtitle">Player statistics</p>
+              <typee text="testtypee"></typee>
             </article>
             <nav class="panel tile is-child is-warning">
               <p class="panel-heading">History</p>
@@ -85,12 +86,17 @@
 </template>
 
 <script>
+import typee from './typee.vue'
+
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome ^_^ Let\'s thype'
     }
+  },
+  components: {
+    typee
   }
 }
 </script>
