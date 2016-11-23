@@ -26,7 +26,6 @@
             <article class="tile is-child notification is-danger">
               <p class="title">Stat</p>
               <p class="subtitle">Player statistics</p>
-              <typee text="testtypee"></typee>
             </article>
             <nav class="panel tile is-child is-warning">
               <p class="panel-heading">History</p>
@@ -39,30 +38,7 @@
           <div class="tile is-parent is-8 is-vertical">
             <div class="box tile is-child">
               <p class="title">Play area</p>
-              <div class="typee-content">
-                <div id="app">
-                  {{ message }}
-                </div>
-              </div>
-              <div id="app-2">
-                <span v-bind:title="message">
-                  Hover your mouse over me for a few seconds to see my dynamically bound title!
-                </span>
-              </div>
-              <div id="app-3">
-                <p v-if="seen">Now you see me</p>
-              </div>
-              <div id="app-7">
-                <ol>
-                  
-                </ol>
-              </div>
-              <div id="app-8">
-                
-              </div>
-              <div id="app-9">
-                <button class="button is-primary" v-on:click="increment">Incr</button>
-              </div>          
+              <typee :spanArray="spanArray" :charArray="charArray"/>
             </div>
             <article class="tile is-child notification is-light">
               <p class="title">Typee Info</p>
@@ -86,14 +62,23 @@
 </template>
 
 <script>
+import THSARA from './config'
+import {util} from './util'
 import typee from './typee.vue'
 
 export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome ^_^ Let\'s thype'
+      msg: 'Welcome ^_^ Let\'s thype',
+      spanArray: '',
+      charArray: '',
+      text: 'ตอนเช้า มีบางครั้งบางคราวที่ฉันตื่นมาแล้วร้องไห้โดยไม่รู้สาเหตุ และมักจะนึกภาพความฝันไม่ออกเสมอ ฉันกำลังตามหาใครคนหนึ่ง แค่เพียงคนเดียวตลอดมา'
     }
+  },
+  created () {
+    this.spanArray = util.spanArray(this.text)
+    this.charArray = this.text.split('')
   },
   components: {
     typee
