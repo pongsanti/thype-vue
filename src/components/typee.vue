@@ -1,9 +1,12 @@
 <template>
   <div>
+    <div class="box current-character">
+      {{displayCurrentChar}}    
+    </div>
     <p>
       <typee-character v-for="obj in spanArray" :spanObject="obj" :currentIndex="currentIndex"/>
     </p>
-    <p class="control">
+    <p class="control box">
       <input ref="typeeInput" autofocus @keydown.prevent="keyDown" class="input is-primary" type="text" placeholder="Type here!">
     </p>
   </div>
@@ -23,6 +26,15 @@ export default {
   props: {
     spanArray: Array,
     charArray: Array
+  },
+  computed: {
+    displayCurrentChar () {
+      if (this.currentChar === ' ') {
+        return '<space>'
+      } else {
+        return this.currentChar
+      }
+    }
   },
   methods: {
     keyDown (event) {
@@ -52,5 +64,10 @@ export default {
     font-family: 'Taviraj', serif;
     font-size: 25px;
     line-height: 1.6em;
+  }
+
+  div.current-character {
+    font-size: 40px;
+    font-weight: bold;
   }
 </style>

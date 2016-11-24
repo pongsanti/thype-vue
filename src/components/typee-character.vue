@@ -13,7 +13,8 @@ export default {
     classObject () {
       return {active: this.currentIndex < this.spanObject.cumLength + this.spanObject.chars.length &&
                         this.currentIndex >= this.spanObject.cumLength,
-        typed: this.currentIndex >= this.spanObject.cumLength + this.spanObject.chars.length}
+        typed: this.currentIndex >= this.spanObject.cumLength + this.spanObject.chars.length,
+        space: this.spanObject.chars === ' '}
     }
   }
 }
@@ -27,5 +28,11 @@ export default {
 
   span.typed {
     color: #0033cc;
+  }
+
+  span.space {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
   }
 </style>
