@@ -4,7 +4,7 @@
       <typee-character v-for="obj in spanArray" :spanObject="obj" :currentIndex="currentIndex"/>
     </p>
     <p class="control">
-      <input autofocus @keydown.prevent="keyDown" class="input is-primary" type="text" placeholder="Type here!">
+      <input ref="typeeInput" autofocus @keydown.prevent="keyDown" class="input is-primary" type="text" placeholder="Type here!">
     </p>
   </div>
 </template>
@@ -30,6 +30,12 @@ export default {
         let curIndex = this.currentIndex + 1
         this.currentChar = this.charArray[curIndex]
         this.currentIndex = curIndex
+
+        if (event.key === ' ') {
+          this.$refs.typeeInput.value = ''
+        } else {
+          this.$refs.typeeInput.value += event.key
+        }
       }
     }
   },
