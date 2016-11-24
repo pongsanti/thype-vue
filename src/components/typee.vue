@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import {util} from './util'
 import typeeCharacter from './typee-character.vue'
 
 export default {

@@ -9,15 +9,11 @@ export default {
     spanObject: Object,
     currentIndex: Number
   },
-  data() {
-    return {
-      
-    }
-  },
   computed: {
     classObject () {
-      return {active : this.currentIndex < this.spanObject.cumLength + this.spanObject.chars.length &&
-        this.currentIndex >= this.spanObject.cumLength}
+      return {active: this.currentIndex < this.spanObject.cumLength + this.spanObject.chars.length &&
+                        this.currentIndex >= this.spanObject.cumLength,
+        typed: this.currentIndex >= this.spanObject.cumLength + this.spanObject.chars.length}
     }
   }
 }
@@ -25,7 +21,11 @@ export default {
 
 <style lang="scss">
   span.active {
-    color: #660066;
+    color: #ff0000;
     background-color: #e6e6e6;
+  }
+
+  span.typed {
+    color: #0033cc;
   }
 </style>

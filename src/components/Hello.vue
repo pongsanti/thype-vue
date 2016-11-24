@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import THSARA from './config'
 import {util} from './util'
 import typee from './typee.vue'
 
