@@ -37,7 +37,6 @@
           </div>
           <div class="tile is-parent is-8 is-vertical">
             <div class="box tile is-child">
-              <p class="title">Play area</p>
               <typee/>
             </div>
             <article class="tile is-child notification is-light">

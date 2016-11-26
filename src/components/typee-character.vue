@@ -27,7 +27,7 @@ export default {
   }
 
   span.typed {
-    color: #0033cc;
+    color: #999999;
   }
 
   span.space {

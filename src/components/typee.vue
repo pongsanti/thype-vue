@@ -1,16 +1,45 @@
 <template>
   <div>
-    <div class="box current-character">
-      {{displayCurrentChar}}    
-    </div>
-    <p>
+    <p class="typee">
       <typee-character v-for="obj in spanArray" :spanObject="obj" :currentIndex="currentIndex"/>
     </p>
-    <p v-show="isPlay" class="control box">
-      <input ref="typeeInput" autofocus @keydown.prevent="keyDown" class="input is-primary" type="text" placeholder="Type here!">
-    </p>
+    <br>
+    <div class="columns" v-show="isPlay">
+      <div class="column is-10">
+        <p class="control box">
+          <input ref="typeeInput" autofocus @keydown.prevent="keyDown" class="input is-primary" type="text" placeholder="Type here!">
+        </p>
+      </div>
+      <div class="column">
+        <div class="box current-character has-text-centered">
+          {{displayCurrentChar}}    
+        </div>
+      </div>
+    </div>
     <div v-show="isEnd" class="notification">
-    asdf
+      <div class="columns">
+        <div class="column is-2">
+          <figure class="image is-96x96">
+            <img :src="textImgUrl">
+          </figure>
+        </div>
+        <div class="column">
+          <div class="content">
+            <p>
+              <small>คุณเพิ่งพิมพ์ข้อความบางตอนจาก...</small>
+              <br>
+              <br>
+              <a :href="textUrl"><strong>{{textTitle}}</strong></a>
+              <br>
+              <br>
+              <span>{{textAuthor}}</span>
+              <br>
+              <br>
+              <br>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -26,6 +55,13 @@ export default {
       let text = res.data[0].text
       this.spanArray = util.spanArray(text)
       this.charArray = text.split('')
+
+      this.textTitle = res.data[0].title
+      this.textAuthor = res.data[0].author
+      this.textUrl = res.data[0].url
+      this.textImgUrl = res.data[0]['img-url']
+
+      this.state = 0
     }, (res) => {
       console.log('Request failure.')
     })
@@ -34,6 +70,10 @@ export default {
     return {
       spanArray: [],
       charArray: [],
+      textTitle: '',
+      textAuthor: '',
+      textUrl: '',
+      textImgUrl: '',
       currentIndex: 0,
       state: 0
     }
@@ -53,7 +93,7 @@ export default {
     },
     displayCurrentChar () {
       if (this.currentChar === ' ') {
-        return '<space>'
+        return '< >'
       } else {
         return this.currentChar
       }
@@ -89,7 +129,7 @@ export default {
 <style scoped lang="scss">
   @import url('https://fonts.googleapis.com/css?family=Taviraj');
 
-  p {
+  p.typee {
     font-family: 'Taviraj', serif;
     font-size: 25px;
     line-height: 1.6em;
@@ -97,6 +137,5 @@ export default {
 
   div.current-character {
     font-size: 40px;
-    font-weight: bold;
   }
 </style>
