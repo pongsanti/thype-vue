@@ -71,13 +71,17 @@ export default {
     return {
       msg: 'Welcome ^_^ Let\'s thype',
       spanArray: '',
-      charArray: '',
-      text: 'ตอนเช้า มีบางครั้งบางคราวที่ฉันตื่นมาแล้วร้องไห้โดยไม่รู้สาเหตุ และมักจะนึกภาพความฝันไม่ออกเสมอ ฉันกำลังตามหาใครคนหนึ่ง แค่เพียงคนเดียวตลอดมา'
+      charArray: ''
     }
   },
   created () {
-    this.spanArray = util.spanArray(this.text)
-    this.charArray = this.text.split('')
+    this.$http.get('/typees').then( (res) => {
+      let text = res.data[0].text
+      this.spanArray = util.spanArray(text)
+      this.charArray = text.split('')
+    }, (res) => {
+      console.log('Request failure.')
+    })
   },
   components: {
     typee
