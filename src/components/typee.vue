@@ -5,15 +5,15 @@
     </p>
     <br>
     <div class="columns" v-show="isPlay">
+      <div class="column">
+        <div class="notification current-character has-text-centered" :class="{'is-danger': mistype}">
+          {{displayCurrentChar}}
+        </div>
+      </div>
       <div class="column is-10">
         <p class="control box">
-          <input ref="typeeInput" autofocus @keydown.prevent="keyDown" class="input is-primary" type="text" placeholder="Type here!">
+          <input ref="typeeInput" autofocus @keydown.prevent="keyDown" :class="inputClass" type="text" placeholder="Type here!">
         </p>
-      </div>
-      <div class="column">
-        <div class="box current-character has-text-centered">
-          {{displayCurrentChar}}    
-        </div>
       </div>
     </div>
     <div v-show="isEnd" class="notification">
@@ -76,7 +76,8 @@ export default {
       textUrl: '',
       textImgUrl: '',
       currentIndex: 0,
-      state: 0
+      state: 0,
+      mistype: false
     }
   },
   computed: {
@@ -84,6 +85,9 @@ export default {
       // random fonts
       let fontIndex = Math.floor((Math.random() * FONTS.length))
       return ['typee', FONTS[fontIndex]]
+    },
+    inputClass () {
+      return {input: true, 'is-info': !this.mistype, 'is-danger': this.mistype}
     },
     isEnd () {
       return this.state === 2
@@ -108,6 +112,7 @@ export default {
   methods: {
     keyDown (event) {
       if (event.key === this.currentChar) {
+        this.mistype = false
         this.currentIndex++
 
         if (event.key === ' ') {
@@ -120,6 +125,8 @@ export default {
           this.clearInput()
           this.state = 2
         }
+      } else {
+        this.mistype = true
       }
     },
     clearInput () {

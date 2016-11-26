@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss">
   span.active {
-    color: #ff0000;
+    color: #000066;
     background-color: #e6e6e6;
   }
 
