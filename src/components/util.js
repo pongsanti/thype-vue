@@ -1,4 +1,4 @@
-import THSARA from './config'
+import {THSARA} from './config'
 
 let util = {
 

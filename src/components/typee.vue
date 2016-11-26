@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="typee">
+    <p :class="typeeClass">
       <typee-character v-for="obj in spanArray" :spanObject="obj" :currentIndex="currentIndex"/>
     </p>
     <br>
@@ -46,6 +46,7 @@
 
 <script>
 import {util} from './util'
+import {FONTS} from './config'
 import typeeCharacter from './typee-character.vue'
 
 export default {
@@ -79,6 +80,11 @@ export default {
     }
   },
   computed: {
+    typeeClass () {
+      // random fonts
+      let fontIndex = Math.floor((Math.random() * FONTS.length))
+      return ['typee', FONTS[fontIndex]]
+    },
     isEnd () {
       return this.state === 2
     },
@@ -127,10 +133,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import url('https://fonts.googleapis.com/css?family=Taviraj');
+  @import url('https://fonts.googleapis.com/css?family=Maitree|Prompt|Taviraj');
+
+  p.maitree {
+    font-family: 'Maitree', serif;
+  }
+
+  p.prompt {
+    font-family: 'Prompt', serif;
+  }
+
+  p.taviraj {
+   font-family: 'Taviraj', serif; 
+  }
 
   p.typee {
-    font-family: 'Taviraj', serif;
     font-size: 25px;
     line-height: 1.6em;
   }
