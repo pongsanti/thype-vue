@@ -38,7 +38,7 @@
           <div class="tile is-parent is-8 is-vertical">
             <div class="box tile is-child">
               <p class="title">Play area</p>
-              <typee :spanArray="spanArray" :charArray="charArray"/>
+              <typee/>
             </div>
             <article class="tile is-child notification is-light">
               <p class="title">Typee Info</p>
@@ -62,26 +62,14 @@
 </template>
 
 <script>
-import {util} from './util'
 import typee from './typee.vue'
 
 export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome ^_^ Let\'s thype',
-      spanArray: '',
-      charArray: ''
+      msg: 'Welcome ^_^ Let\'s thype'
     }
-  },
-  created () {
-    this.$http.get('/typees').then( (res) => {
-      let text = res.data[0].text
-      this.spanArray = util.spanArray(text)
-      this.charArray = text.split('')
-    }, (res) => {
-      console.log('Request failure.')
-    })
   },
   components: {
     typee

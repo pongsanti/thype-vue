@@ -16,25 +16,33 @@
 </template>
 
 <script>
+import {util} from './util'
 import typeeCharacter from './typee-character.vue'
 
 export default {
   name: 'typee',
+  created () {
+    this.$http.get('/typees').then((res) => {
+      let text = res.data[0].text
+      this.spanArray = util.spanArray(text)
+      this.charArray = text.split('')
+    }, (res) => {
+      console.log('Request failure.')
+    })
+  },
   data () {
     return {
+      spanArray: [],
+      charArray: [],
       currentIndex: 0,
       state: 0
     }
-  },
-  props: {
-    spanArray: Array,
-    charArray: Array
   },
   computed: {
     isEnd () {
       return this.state === 2
     },
-    isPlay() {
+    isPlay () {
       return this.state === 0
     },
     lastKey () {
