@@ -55,9 +55,6 @@ export default {
     keyDown (event) {
       if (event.key === this.currentChar) {
         this.currentIndex++
-        //let curIndex = this.currentIndex + 1
-        //this.currentChar = this.charArray[curIndex]
-        //this.currentIndex = curIndex
 
         if (event.key === ' ') {
           this.clearInput()
