@@ -26,6 +26,7 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "bulma": "^0.2.3",
+    "cross-env": "^2.0.0",
     "envify": "^3.4.1",
     "express": "^4.14.0",
     "lodash": "^4.17.2",
@@ -42,7 +43,6 @@
     "babelify": "^7.2.0",
     "browserify": "^13.1.0",
     "browserify-hmr": "^0.3.1",
-    "cross-env": "^2.0.0",
     "eslint": "^3.3.0",
     "eslint-config-standard": "^5.3.5",
     "eslint-plugin-html": "^1.5.2",
