@@ -12,11 +12,6 @@
           </nav>
         </div>
       </div>
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">{{ msg }}</h1>
-        </div>
-      </div>
     </section>
     <br>
     <section>
@@ -41,7 +36,7 @@
             </div>
             <article class="tile is-child notification is-light">
               <p class="title">Typee Info</p>
-              <p>Lorem Ipsum            </p>
+              <p>Lorem Ipsum</p>
             </article>
           </div>
           <div class="tile is-parent is-vertical is-2">
@@ -67,7 +62,6 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome ^_^ Let\'s thype'
     }
   },
   components: {

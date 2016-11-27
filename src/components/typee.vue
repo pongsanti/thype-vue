@@ -1,5 +1,8 @@
 <template>
   <div>
+    <p>
+      <button class="button is-info" @click="newGame">Start New Game</button>
+    </p>
     <p :class="typeeClass">
       <typee-character v-for="obj in spanArray" :spanObject="obj" :currentIndex="currentIndex"/>
     </p>
@@ -51,22 +54,6 @@ import typeeCharacter from './typee-character.vue'
 
 export default {
   name: 'typee',
-  created () {
-    this.$http.get('/typees').then((res) => {
-      let text = res.data[0].text
-      this.spanArray = util.spanArray(text)
-      this.charArray = text.split('')
-
-      this.textTitle = res.data[0].title
-      this.textAuthor = res.data[0].author
-      this.textUrl = res.data[0].url
-      this.textImgUrl = res.data[0]['img-url']
-
-      this.state = 0
-    }, (res) => {
-      console.log('Request failure.')
-    })
-  },
   data () {
     return {
       spanArray: [],
@@ -110,6 +97,24 @@ export default {
     }
   },
   methods: {
+    newGame (event) {
+      this.$http.get('/typees').then((res) => {
+        let text = res.data[0].text
+        this.spanArray = util.spanArray(text)
+        this.charArray = text.split('')
+
+        this.textTitle = res.data[0].title
+        this.textAuthor = res.data[0].author
+        this.textUrl = res.data[0].url
+        this.textImgUrl = res.data[0]['img-url']
+
+        this.currentIndex = 0
+        this.mistype = false
+        this.state = 0
+      }, (res) => {
+        console.log('Request failure.')
+      })
+    },
     keyDown (event) {
       if (event.key === this.currentChar) {
         this.mistype = false
@@ -126,7 +131,8 @@ export default {
           this.state = 2
         }
       } else {
-        this.mistype = true
+        if (!event.shiftKey)
+          this.mistype = true
       }
     },
     clearInput () {
