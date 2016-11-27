@@ -18,6 +18,7 @@ const MONGODB_URI = config.MONGODB_URI
 const PORT = config.PORT
 const TYPEE_COLLECTIONS = 'typees'
 
+/*
 // DB connection
 mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
   if (err) {
@@ -32,6 +33,12 @@ mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
     let port = server.address().port
     console.log(`App now running on port ${port}`)
   })
+})
+*/
+
+let server = app.listen(PORT || 5000, () => {
+  let port = server.address().port
+  console.log(`App now running on port ${port}`)
 })
 
 // root

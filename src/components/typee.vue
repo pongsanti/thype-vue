@@ -98,6 +98,19 @@ export default {
   },
   methods: {
     newGame (event) {
+      let text = 'ตอนเช้า มีบางครั้งบางคราวที่ฉันตื่นมาแล้วร้องไห้โดยไม่รู้สาเหตุ และมักจะนึกภาพความฝันไม่ออกเสมอ ฉันกำลังตามหาใครคนหนึ่ง แค่เพียงคนเดียวตลอดมา'
+      this.spanArray = util.spanArray(text)
+      this.charArray = text.split('')
+
+      this.textTitle = 'Your Name เธอคือ...'
+      this.textAuthor = 'Makoto Shinkai'
+      this.textUrl = 'https://readery.co/9786169276302'
+      this.textImgUrl = 'https://readery.co/media/catalog/product/cache/1/small_image/240x/17f82f742ffe127f42dca9de82fb58b1/y/o/your_name_front_cover_2.jpg'
+
+      this.currentIndex = 0
+      this.mistype = false
+      this.state = 0
+      /*
       this.$http.get('/typees').then((res) => {
         let text = res.data[0].text
         this.spanArray = util.spanArray(text)
@@ -114,6 +127,7 @@ export default {
       }, (res) => {
         console.log('Request failure.')
       })
+      */
     },
     keyDown (event) {
       if (event.key === this.currentChar) {
