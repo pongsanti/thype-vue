@@ -5,7 +5,7 @@
   "author": "pongsanti <pongsanti.tanvejsilp@gmail.com>",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js",
     "_serve": "http-server -o -c 1 -a localhost",
     "serve": "nodemon app.js",
